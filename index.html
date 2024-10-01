@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחולל פרומפטים לשיווק מוסדות חינוך</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap');
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        select, input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            max-width: 200px;
+            margin: 20px auto;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .prompt-container {
+            background-color: #f1f8ff;
+            border: 1px solid #b8daff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .prompt-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .copy-instruction {
+            background-color: #e1f5fe;
+            border: 1px solid #4fc3f7;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .copy-instruction a {
+            color: #0277bd;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .copy-instruction a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>מחולל פרומפטים לשיווק מוסדות חינוך</h1>
+        
+        <div class="form-section">
+            <label for="educationStage">בחר שלב חינוך:</label>
+            <select id="educationStage">
+                <option value="">בחר...</option>
+                <option value="גן">גן</option>
+                <option value="בית ספר יסודי">בית ספר יסודי</option>
+                <option value="בית ספר על יסודי">בית ספר על יסודי</option>
+            </select>
+
+            <label for="sector">בחר מגזר:</label>
+            <select id="sector">
+                <option value="">בחר...</option>
+                <option value="ממלכתי">ממלכתי (לא דתי)</option>
+                <option value="ממלכתי דתי">ממלכתי דתי</option>
+                <option value="חרדי">חרדי</option>
+            </select>
+
+            <label for="schoolName">שם המוסד החינוכי:</label>
+            <input type="text" id="schoolName">
+
+            <label for="location">מיקום:</label>
+            <input type="text" id="location">
+
+            <label for="approach">גישה חינוכית:</label>
+            <input type="text" id="approach">
+
+            <label for="programs">תוכניות ייחודיות:</label>
+            <textarea id="programs"></textarea>
+
+            <label for="audience">קהל יעד:</label>
+            <input type="text" id="audience">
+
+            <button onclick="generatePrompts()">צור פרומפטים</button>
+        </div>
+
+        <div id="promptsOutput"></div>
+    </div>
+
+    <script>
+        function generatePrompts() {
+            const stage = document.getElementById('educationStage').value;
+            const sector = document.getElementById('sector').value;
+            const schoolName = document.getElementById('schoolName').value;
+            const location = document.getElementById('location').value;
+            const approach = document.getElementById('approach').value;
+            const programs = document.getElementById('programs').value;
+            const audience = document.getElementById('audience').value;
+
+            const socialMediaPrompt = `כתוב 5 פוסטים לרשתות חברתיות עבור ${schoolName} (${stage} ${sector}). הפוסטים צריכים:
+- להדגיש את הגישה החינוכית הייחודית: ${approach}
+- לציין את התוכניות הייחודיות: ${programs}
+- להיות מותאמים לקהל היעד: ${audience}
+- לכלול קריאה לפעולה ברורה
+- להיות באורך של 50-100 מילים כל אחד`;
+
+            const emailPrompt = `צור תבנית לקמפיין דוא"ל המזמין הורים לרשום את ילדיהם ל${schoolName} (${stage} ${sector}). הדוא"ל צריך:
+- לפתוח עם פנייה אישית
+- להדגיש את היתרונות הייחודיים של המוסד החינוכי, כולל ${approach}
+- לכלול מידע על התוכניות הייחודיות: ${programs}
+- להזמין להשתתף ביום פתוח או לתאם סיור
+- לסיים עם קריאה לפעולה ברורה
+- להיות באורך של כ-200 מילים`;
+
+            const websitePrompt = `כתוב תוכן לעמוד 'אודות' באתר של ${schoolName} (${stage} ${sector}). התוכן צריך:
+- לפתוח עם משפט מושך המתאר את החזון של המוסד החינוכי
+- לתאר בקצרה את ההיסטוריה והמיקום של המוסד החינוכי ב${location}
+- להסביר את הגישה החינוכית הייחודית: ${approach}
+- לפרט את התוכניות הייחודיות: ${programs}
+- לכלול ציטוט או סיפור הצלחה של תלמיד או הורה
+- לסיים עם הזמנה ליצירת קשר או ביקור
+- להיות באורך של כ-300 מילים`;
+
+            const outputHTML = `
+                <div class="prompt-container">
+                    <div class="prompt-title">פרומפט לרשתות חברתיות:</div>
+                    <p>${socialMediaPrompt}</p>
+                </div>
+                <div class="prompt-container">
+                    <div class="prompt-title">פרומפט לקמפיין דוא"ל:</div>
+                    <p>${emailPrompt}</p>
+                </div>
+                <div class="prompt-container">
+                    <div class="prompt-title">פרומפט לתוכן אתר:</div>
+                    <p>${websitePrompt}</p>
+                </div>
+                <div class="copy-instruction">
+                    <p>להעתקת הפרומפטים והשימוש בהם, אנא בקרו באחד מהאתרים הבאים:</p>
+                    <ul>
+                        <li><a href="https://chat.openai.com" target="_blank">ChatGPT</a></li>
+                        <li><a href="https://www.anthropic.com" target="_blank">Claude</a></li>
+                    </ul>
+                </div>
+            `;
+
+            document.getElementById('promptsOutput').innerHTML = outputHTML;
+        }
+    </script>
+</body>
+</html>
